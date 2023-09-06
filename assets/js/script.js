@@ -21,7 +21,7 @@ Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membr
     Buon divertimento e confermate lettura come al solito!
     
     Dati:
-    
+
     Wayne Barnett
     Founder & CEO	
     wayne-barnett-founder-ceo.jpg
@@ -46,3 +46,46 @@ Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membr
     Graphic Designer	
     barbara-ramos-graphic-designer.jpg
 */
+
+/* 
+    MILESTONE 0:
+    Creare l’array di oggetti con le informazioni fornite.
+*/
+const dipendenti = [
+
+    {
+        fullName: 'Wayne Barnett',
+        job: 'Founder & CEO',
+        image: 'wayne-barnett-founder-ceo.jpg'
+    },
+
+    {
+        fullName: 'Angela Caroll',
+        job: 'Chief Editor',
+        image: 'angela-caroll-chief-editor.jpg'
+    },
+
+    {
+        fullName: 'Walter Gordon',
+        job: 'Office Manager',
+        image: 'walter-gordon-office-manager.jpg'
+    },
+
+    {
+        fullName: 'Angela Lopez',
+        job: 'Social Media Manager',
+        image: 'angela-lopez-social-media-manager.jpg'
+    },
+
+    {
+        fullName: 'Scott Estrada',
+        job: 'Developer',
+        image: 'scott-estrada-developer.jpg'
+    },
+
+    {
+        fullName: 'Barbara Ramos',
+        job: 'Graphic Designer',
+        image: 'barbara-ramos-graphic-designer.jpg'
+    },
+];
