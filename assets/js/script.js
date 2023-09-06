@@ -56,36 +56,49 @@ const dipendenti = [
     {
         fullName: 'Wayne Barnett',
         job: 'Founder & CEO',
-        image: 'wayne-barnett-founder-ceo.jpg'
+        image: './assets/img/wayne-barnett-founder-ceo.jpg'
     },
 
     {
         fullName: 'Angela Caroll',
         job: 'Chief Editor',
-        image: 'angela-caroll-chief-editor.jpg'
+        image: './assets/img/angela-caroll-chief-editor.jpg'
     },
 
     {
         fullName: 'Walter Gordon',
         job: 'Office Manager',
-        image: 'walter-gordon-office-manager.jpg'
+        image: './assets/img/walter-gordon-office-manager.jpg'
     },
 
     {
         fullName: 'Angela Lopez',
         job: 'Social Media Manager',
-        image: 'angela-lopez-social-media-manager.jpg'
+        image: './assets/img/angela-lopez-social-media-manager.jpg'
     },
 
     {
         fullName: 'Scott Estrada',
         job: 'Developer',
-        image: 'scott-estrada-developer.jpg'
+        image: './assets/img/scott-estrada-developer.jpg'
     },
 
     {
         fullName: 'Barbara Ramos',
         job: 'Graphic Designer',
-        image: 'barbara-ramos-graphic-designer.jpg'
+        image: './assets/img/barbara-ramos-graphic-designer.jpg'
     },
 ];
+
+/* 
+    MILESTONE 1:
+    Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
+*/
+
+for (let i = 0; i < dipendenti.length; i++) {
+    const dipendente = dipendenti[i];
+    
+    for (const key in dipendente) {
+        console.log(`key - ${key} : value - ${dipendente[key]}`);
+    }
+}
