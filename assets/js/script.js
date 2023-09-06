@@ -15,7 +15,7 @@ Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membr
     
     BONUS 2:
     Organizzare i singoli membri in card/schede
-    
+
     Dati:
 
     Wayne Barnett
@@ -91,18 +91,19 @@ const teamWork = [
     Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
 */
 
-for (let i = 0; i < teamWork.length; i++) {
+/* for (let i = 0; i < teamWork.length; i++) {
     const dipendente = teamWork[i];
     
     for (const key in dipendente) {
         console.log(`key - ${key} : value - ${dipendente[key]}`);
     }
-}
+} */
 
 /* 
     MILESTONE 2:
     Stampare le stesse informazioni su DOM sottoforma di stringhe
 */
+/* 
 const bodyElement = document.querySelector('body');
 const teamWorkList = document.createElement('ul'); //lista di lavoratori
 
@@ -122,4 +123,73 @@ for (let i = 0; i < teamWork.length; i++) {
         workerElement.append(workerItem);
         workerItem.insertAdjacentHTML('beforeend', `<strong>${key}</strong>: ${dipendente[key]}`);
     }
+} */
+
+/* 
+    BONUS 1:
+    Trasformare la stringa foto in una immagine effettiva
+    
+    BONUS 2:
+    Organizzare i singoli membri in card/schede
+*/
+
+//Definisco gli elementi di cui ho bisogno
+const teamworkElement = document.getElementById('teamwork');
+const rowElement = document.createElement('div');
+
+//Aggiungo le classi CSS agli elementi che ho definito
+teamworkElement.classList.add('container', 'mt-3');
+rowElement.classList.add('row', 'g-5');
+
+//Mostro in pagina gli elementi creati
+teamworkElement.append(rowElement);
+
+for (let i = 0; i < teamWork.length; i++) {
+    //Definisco gli elementi di cui ho bisogno
+    const worker = teamWork[i];
+    const col4Element = document.createElement('div');
+    const cardElement = document.createElement('div');
+    const cardImgElement = document.createElement('div');
+    const imgElement = document.createElement('img');
+    const cardBodyElement = document.createElement('div');
+    const listGroupElement = document.createElement('ul');
+    
+
+    //Aggiungo le classi CSS agli elementi che ho definito
+    col4Element.classList.add('col-4');
+    cardElement.classList.add('card');
+    cardImgElement.classList.add('card-img-top');
+    cardBodyElement.classList.add('card-body');
+    imgElement.classList.add('img-fluid');
+    listGroupElement.classList.add('list-group');
+    
+
+    //Aggiungo gli attributi agli elementi della DOM creati
+    imgElement.setAttribute('src', worker.image);
+
+    //Mostro in pagina gli elementi creati
+    rowElement.append(col4Element);
+    col4Element.append(cardElement);
+    cardElement.append(cardImgElement);
+    cardImgElement.append(imgElement);
+    cardElement.append(cardBodyElement);
+    cardBodyElement.append(listGroupElement);
+    
+    // console.log(worker);
+
+    for (const key in worker) {
+        //controllo se la chiave ' job o fullName, l'immagine non mi serve
+        if (key === 'job' || key === 'fullName') {
+            //Definisco gli elementi di cui ho bisogno
+            const listGroupItemElement = document.createElement('li');
+
+            //Aggiungo le classi CSS agli elementi che ho definito
+            listGroupItemElement.classList.add('list-group-item');
+
+            //Mostro in pagina gli elementi creati
+            listGroupElement.append(listGroupItemElement)
+            listGroupItemElement.append(worker[key]);
+        }
+    }
+
 }
