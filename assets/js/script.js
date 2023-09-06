@@ -15,10 +15,6 @@ Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membr
     
     BONUS 2:
     Organizzare i singoli membri in card/schede
-    Consigli del giorno:
-    Ragioniamo come sempre a step. Prima la logica in italiano e poi traduciamo in codice.
-    E ricordiamoci che console.log() è nostro amico!
-    Buon divertimento e confermate lettura come al solito!
     
     Dati:
 
@@ -51,7 +47,7 @@ Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membr
     MILESTONE 0:
     Creare l’array di oggetti con le informazioni fornite.
 */
-const dipendenti = [
+const teamWork = [
 
     {
         fullName: 'Wayne Barnett',
@@ -95,10 +91,35 @@ const dipendenti = [
     Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
 */
 
-for (let i = 0; i < dipendenti.length; i++) {
-    const dipendente = dipendenti[i];
+for (let i = 0; i < teamWork.length; i++) {
+    const dipendente = teamWork[i];
     
     for (const key in dipendente) {
         console.log(`key - ${key} : value - ${dipendente[key]}`);
+    }
+}
+
+/* 
+    MILESTONE 2:
+    Stampare le stesse informazioni su DOM sottoforma di stringhe
+*/
+const bodyElement = document.querySelector('body');
+const teamWorkList = document.createElement('ul'); //lista di lavoratori
+
+bodyElement.insertAdjacentElement('beforeend', teamWorkList);
+
+for (let i = 0; i < teamWork.length; i++) {
+    const dipendente = teamWork[i];
+    const teamWorkListItem = document.createElement('li'); //lavoratore singolo
+    const workerElement = document.createElement('ul'); //lista che rappresenta le proprieta' di un lavoratore
+    
+    teamWorkList.append(teamWorkListItem);
+    teamWorkListItem.append(workerElement);
+
+    for (const key in dipendente) {
+        const workerItem = document.createElement('li'); //proprieta' singola
+
+        workerElement.append(workerItem);
+        workerItem.insertAdjacentHTML('beforeend', `<strong>${key}</strong>: ${dipendente[key]}`);
     }
 }
