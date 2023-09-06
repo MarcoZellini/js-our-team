@@ -138,58 +138,103 @@ const teamworkElement = document.getElementById('teamwork');
 const rowElement = document.createElement('div');
 
 //Aggiungo le classi CSS agli elementi che ho definito
-teamworkElement.classList.add('container', 'mt-3');
+teamworkElement.classList.add('container', 'my-5');
 rowElement.classList.add('row', 'g-5');
 
 //Mostro in pagina gli elementi creati
 teamworkElement.append(rowElement);
 
-for (let i = 0; i < teamWork.length; i++) {
-    //Definisco gli elementi di cui ho bisogno
-    const worker = teamWork[i];
-    const col4Element = document.createElement('div');
-    const cardElement = document.createElement('div');
-    const cardImgElement = document.createElement('div');
-    const imgElement = document.createElement('img');
-    const cardBodyElement = document.createElement('div');
-    const listGroupElement = document.createElement('ul');
-    
+updateWorkerTable(teamWork, rowElement);
 
-    //Aggiungo le classi CSS agli elementi che ho definito
-    col4Element.classList.add('col-4');
-    cardElement.classList.add('card');
-    cardImgElement.classList.add('card-img-top');
-    cardBodyElement.classList.add('card-body');
-    imgElement.classList.add('img-fluid');
-    listGroupElement.classList.add('list-group');
-    
 
-    //Aggiungo gli attributi agli elementi della DOM creati
-    imgElement.setAttribute('src', worker.image);
+const formElement = document.querySelector('form');
 
-    //Mostro in pagina gli elementi creati
-    rowElement.append(col4Element);
-    col4Element.append(cardElement);
-    cardElement.append(cardImgElement);
-    cardImgElement.append(imgElement);
-    cardElement.append(cardBodyElement);
-    cardBodyElement.append(listGroupElement);
-    
-    // console.log(worker);
+formElement.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    for (const key in worker) {
-        //controllo se la chiave ' job o fullName, l'immagine non mi serve
-        if (key === 'job' || key === 'fullName') {
-            //Definisco gli elementi di cui ho bisogno
-            const listGroupItemElement = document.createElement('li');
+    const fullNameElement = document.getElementById('full-name');
+    const jobElement = document.getElementById('job');
 
-            //Aggiungo le classi CSS agli elementi che ho definito
-            listGroupItemElement.classList.add('list-group-item');
+    fullNameValue = fullNameElement.value;
+    jobValue = jobElement.value;
 
-            //Mostro in pagina gli elementi creati
-            listGroupElement.append(listGroupItemElement)
-            listGroupItemElement.append(worker[key]);
-        }
+    addWorker(teamWork, fullNameValue, jobValue);
+    updateWorkerTable(teamWork, rowElement);
+
+    console.log(teamWork);
+});
+
+
+/**
+ * ## addWorker
+ * > This function add a worker to a given List 
+ * @param {Object[]} teamWork List of workers to update
+ * @param {String} name Worker name
+ * @param {String} position Worker position
+ */
+function addWorker(teamWork, name, position) {
+
+    const worker = {
+        fullName: name,
+        job: position,
+        image: `https://picsum.photos/400/429?random=${Math.ceil(Math.random() * 10)}`
     }
 
+    teamWork.push(worker);
+}
+
+function updateWorkerTable(teamWork, rowElement) {
+
+    //Azzero l'area della DOM dove andro' a scrivere
+    rowElement.innerHTML = '';
+
+    for (let i = 0; i < teamWork.length; i++) {
+        //Definisco gli elementi di cui ho bisogno
+        const worker = teamWork[i];
+        const col4Element = document.createElement('div');
+        const cardElement = document.createElement('div');
+        const cardImgElement = document.createElement('div');
+        const imgElement = document.createElement('img');
+        const cardBodyElement = document.createElement('div');
+        const listGroupElement = document.createElement('ul');
+
+
+        //Aggiungo le classi CSS agli elementi che ho definito
+        col4Element.classList.add('col-4');
+        cardElement.classList.add('card');
+        // cardImgElement.classList.add('card-img-top');
+        cardBodyElement.classList.add('card-body');
+        imgElement.classList.add('img-fluid', 'card-img-top');
+        listGroupElement.classList.add('list-group');
+
+
+        //Aggiungo gli attributi agli elementi della DOM creati
+        imgElement.setAttribute('src', worker.image);
+
+        //Mostro in pagina gli elementi creati
+        rowElement.append(col4Element);
+        col4Element.append(cardElement);
+        cardElement.append(cardImgElement);
+        cardImgElement.append(imgElement);
+        cardElement.append(cardBodyElement);
+        cardBodyElement.append(listGroupElement);
+
+        // console.log(worker);
+
+        for (const key in worker) {
+            //controllo se la chiave ' job o fullName, l'immagine non mi serve
+            if (key === 'job' || key === 'fullName') {
+                //Definisco gli elementi di cui ho bisogno
+                const listGroupItemElement = document.createElement('li');
+
+                //Aggiungo le classi CSS agli elementi che ho definito
+                listGroupItemElement.classList.add('list-group-item');
+
+                //Mostro in pagina gli elementi creati
+                listGroupElement.append(listGroupItemElement)
+                listGroupItemElement.append(worker[key]);
+            }
+        }
+
+    }
 }
