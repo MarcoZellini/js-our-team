@@ -83,7 +83,7 @@ const teamWork = [
         fullName: 'Barbara Ramos',
         job: 'Graphic Designer',
         image: './assets/img/barbara-ramos-graphic-designer.jpg'
-    },
+    }
 ];
 
 /* 
@@ -103,6 +103,7 @@ const teamWork = [
     MILESTONE 2:
     Stampare le stesse informazioni su DOM sottoforma di stringhe
 */
+
 /* 
 const bodyElement = document.querySelector('body');
 const teamWorkList = document.createElement('ul'); //lista di lavoratori
@@ -123,7 +124,8 @@ for (let i = 0; i < teamWork.length; i++) {
         workerElement.append(workerItem);
         workerItem.insertAdjacentHTML('beforeend', `<strong>${key}</strong>: ${dipendente[key]}`);
     }
-} */
+} 
+*/
 
 /* 
     BONUS 1:
@@ -139,16 +141,15 @@ const rowElement = document.createElement('div');
 
 //Aggiungo le classi CSS agli elementi che ho definito
 teamworkElement.classList.add('container', 'my-5');
-rowElement.classList.add('row', 'g-5');
+rowElement.classList.add('row', 'g-5', 'justify-conntent-center', 'm-auto');
 
 //Mostro in pagina gli elementi creati
 teamworkElement.append(rowElement);
-
 updateWorkerTable(teamWork, rowElement);
-
 
 const formElement = document.querySelector('form');
 
+//Aggiungo un ascoltatore: Quando eseguo l'evento sumbit sulla form faccio...
 formElement.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -168,7 +169,7 @@ formElement.addEventListener('submit', function (e) {
 /**
  * ## addWorker
  * > This function add a worker to a given List 
- * @param {Object[]} teamWork List of workers to update
+ * @param {Object[]} teamWork Workers' List to update
  * @param {String} name Worker name
  * @param {String} position Worker position
  */
@@ -183,6 +184,13 @@ function addWorker(teamWork, name, position) {
     teamWork.push(worker);
 }
 
+
+/**
+ * ### updateWorkerTable
+ * > This function update the workers table HTML structure
+ * @param {Object[]} teamWork Workers' List
+ * @param {Object} rowElement Element to be written
+ */
 function updateWorkerTable(teamWork, rowElement) {
 
     //Azzero l'area della DOM dove andro' a scrivere
@@ -219,8 +227,6 @@ function updateWorkerTable(teamWork, rowElement) {
         cardElement.append(cardBodyElement);
         cardBodyElement.append(listGroupElement);
 
-        // console.log(worker);
-
         for (const key in worker) {
             //controllo se la chiave ' job o fullName, l'immagine non mi serve
             if (key === 'job' || key === 'fullName') {
@@ -235,6 +241,5 @@ function updateWorkerTable(teamWork, rowElement) {
                 listGroupItemElement.append(worker[key]);
             }
         }
-
     }
 }
